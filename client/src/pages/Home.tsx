@@ -40,15 +40,13 @@ export default function Home() {
       <header className="border-b border-slate-200 bg-white/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-slate-900">品牌識別落地</h1>
-                <p className="text-sm text-slate-500">Brand Identity Workshop</p>
-              </div>
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="蕉您來好康農場 Logo" className="w-12 h-12 object-contain" />
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900">蕉您來好康農場</h1>
+              <p className="text-sm text-slate-500">Good Deals & Joy Farm</p>
             </div>
+          </div>
           </div>
         </div>
       </header>

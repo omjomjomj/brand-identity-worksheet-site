@@ -16,12 +16,10 @@ export default function Worksheet2() {
               </Button>
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
+              <img src="/logo.png" alt="蕉您來好康農場 Logo" className="w-10 h-10 object-contain" />
               <div>
-                <h1 className="text-xl font-bold text-slate-900">工作單 2</h1>
-                <p className="text-sm text-slate-500">視覺風格三軸與關鍵字</p>
+                <h1 className="text-xl font-bold text-slate-900">蕉您來好康農場</h1>
+                <p className="text-sm text-slate-500">工作單 2 - 視覺風格三軸與關鍵字</p>
               </div>
             </div>
           </div>
@@ -42,7 +40,7 @@ export default function Worksheet2() {
           </div>
 
           {/* Instructions Card */}
-          <Card className="mb-12 bg-orange-50 border-orange-200 p-6">
+          <Card className="mb-12 bg-green-50 border-green-200 p-6">
             <div className="flex gap-4">
               <div className="text-orange-600 text-2xl">🎨</div>
               <div>

@@ -16,12 +16,10 @@ export default function Worksheet1() {
               </Button>
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
+              <img src="/logo.png" alt="蕉您來好康農場 Logo" className="w-10 h-10 object-contain" />
               <div>
-                <h1 className="text-xl font-bold text-slate-900">工作單 1</h1>
-                <p className="text-sm text-slate-500">品牌快照與痛點</p>
+                <h1 className="text-xl font-bold text-slate-900">蕉您來好康農場</h1>
+                <p className="text-sm text-slate-500">工作單 1 - 品牌快照與痛點</p>
               </div>
             </div>
           </div>
