@@ -3,9 +3,11 @@ import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowLeft, Copy, BookOpen, Download } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useFormData } from "@/contexts/FormContext";
 
 export default function Worksheet4() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { formData } = useFormData();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,71 +19,70 @@ Good Deals & Joy Farm - Brand Identity Worksheets
 
 生成時間：${new Date().toLocaleString('zh-TW')}
 
-=== 工作單 1：品牌快照與痛點 ===
+================================================================================
+工作單 1：品牌快照與痛點
+================================================================================
 
 A. 品牌現狀與核心
-主要產品/服務是什麼？目前處於什麼階段？
-（請在網站上填寫）
+主要產品／服務是什麼？目前處於什麼階段？
+${formData.worksheet1_brandStatus || '（未填寫）'}
 
 B. 目標受眾 (Target Audience)
 最想吸引的客戶是誰？（年齡、職業、生活方式）
-（請在網站上填寫）
+${formData.worksheet1_targetAudience || '（未填寫）'}
 
 C. 競爭優勢與價值
 為什麼客戶會選擇我們而不是別人？最核心的特色是？
-（請在網站上填寫）
+${formData.worksheet1_competitiveAdvantage || '（未填寫）'}
 
 D. 品牌個性關鍵字
-請勾選 3-5 個符合品牌未來形象的形容詞：
-- 專業信頼 (Professional)
-- 親切友善 (Friendly)
-- 高端精緻 (Luxury)
-- 經濟實惠 (Affordable)
-- 創新前衛 (Innovative)
-- 經典傳統 (Classic)
-- 簡約現代 (Minimalist)
-- 溫暖親民 (Warm)
+選擇的品牌個性：${formData.worksheet1_personalityKeywords.length > 0 ? formData.worksheet1_personalityKeywords.join('、') : '（未選擇）'}
 
-=== 工作單 2：視覺風格三軸與關鍵字 ===
+================================================================================
+工作單 2：視覺風格三軸與關鍵字
+================================================================================
 
 A. 視覺風格三軸
-- 色彩氛圍：冷調 ←→ 暖調
-- 字體風格：傳統 ←→ 現代
-- 版面節奏：規則 ←→ 自由
+- 色彩氛圍（冷調 1-10 暖調）：${formData.worksheet2_colorAxis || '（未選擇）'}
+- 字體風格（傳統 1-10 現代）：${formData.worksheet2_typographyAxis || '（未選擇）'}
+- 版面節奏（規則 1-10 自由）：${formData.worksheet2_layoutAxis || '（未選擇）'}
 
 B. 視覺關鍵字
-請列出 8-12 個描述品牌視覺風格的關鍵字
-（請在網站上填寫）
+${formData.worksheet2_visualKeywords || '（未填寫）'}
 
 C. 色彩系統
-- 主色：
-- 輔色：
-- 強調色：
+- 主色：${formData.worksheet2_primaryColor || '（未填寫）'}
+- 輔色：${formData.worksheet2_secondaryColor || '（未填寫）'}
+- 強調色：${formData.worksheet2_accentColor || '（未填寫）'}
 
 D. 字體系統
-- 標題字體：
-- 正文字體：
+- 標題字體：${formData.worksheet2_headingFont || '（未填寫）'}
+- 正文字體：${formData.worksheet2_bodyFont || '（未填寫）'}
 
-=== 工作單 3：設計師簡報快照 ===
+================================================================================
+工作單 3：設計師簡報快照
+================================================================================
 
 A. 核心概念與關鍵字 (Core Keywords)
-（請在網站上填寫）
+${formData.worksheet3_coreKeywords || '（未填寫）'}
 
 B. 品牌故事與主要溝通訊息 (Brand Story & Message)
-（請在網站上填寫）
+${formData.worksheet3_brandStory || '（未填寫）'}
 
 C. 視覺風格參考與偏好 (Visual References)
-（請在網站上填寫）
+${formData.worksheet3_visualReferences || '（未填寫）'}
 
 D. 設計產出優先順序 (Priorities)
-1. （請在網站上填寫）
-2. （請在網站上填寫）
-3. （請在網站上填寫）
+1. ${formData.worksheet3_priority1 || '（未填寫）'}
+2. ${formData.worksheet3_priority2 || '（未填寫）'}
+3. ${formData.worksheet3_priority3 || '（未填寫）'}
 
 E. 限制條件與應用場景 (Constraints & Scenarios)
-（請在網站上填寫）
+${formData.worksheet3_constraints || '（未填寫）'}
 
-=== 工作單 4：AI 提示詞小抄 ===
+================================================================================
+工作單 4：AI 提示詞小抄（參考用）
+================================================================================
 
 提示詞 1：提取視覺關鍵字
 - 角色：品牌顧問與視覺策略師
@@ -95,9 +96,10 @@ E. 限制條件與應用場景 (Constraints & Scenarios)
 - 角色：品牌設計主管
 - 任務：轉換成一頁式設計師簡報快照
 
----
+================================================================================
+
 本文件由蕉您來好康農場品牌識別工作單系統自動生成。
-請在網站上完整填寫所有工作單內容，以獲得完整的品牌策略文件。
+所有內容基於您在網站上的實際填寫。
     `;
 
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
@@ -284,7 +286,7 @@ E. 限制條件與應用場景 (Constraints & Scenarios)
                   匯出工作單內容
                 </h3>
                 <p className="text-slate-700 mb-6">
-                  將所有工作單內容匯出為文本文件，方便您保存、列印或分享給團隊成員。
+                  將您在所有工作單中填寫的內容匯出為文本文件，方便您保存、列印或分享給團隊成員。
                 </p>
                 <Button
                   size="lg"

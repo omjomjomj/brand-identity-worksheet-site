@@ -3,8 +3,11 @@ import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { useEffect } from "react";
+import { useFormData } from "@/contexts/FormContext";
 
 export default function Worksheet3() {
+  const { formData, updateFormData } = useFormData();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -51,142 +54,125 @@ export default function Worksheet3() {
               <div>
                 <h3 className="font-bold text-slate-900 mb-2">填寫說明</h3>
                 <p className="text-slate-700">
-                  保持簡潔：這是一頁式簡報。使用淺白的語言，避免沒有舉例的模糊詞彙。這份簡報應該可以直接分享給設計師或團隊成員。
+                  簡潔、具體地描述品牌核心、故事、視覺參考、優先順序和限制條件。讓設計師一目瞭然。
                 </p>
               </div>
             </div>
           </Card>
 
           {/* Form Sections */}
-          <div className="space-y-12">
-            {/* Section A */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-green-600 text-white flex items-center justify-center font-bold text-lg">
+          <div className="space-y-8">
+            {/* A. Core Keywords */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   A
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    核心概念與關鍵字
-                  </h3>
-                  <p className="text-slate-600">(Core Keywords)</p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">核心概念與關鍵字</h3>
+                <p className="text-sm text-slate-500 mt-1">(Core Keywords)</p>
               </div>
-              <div className="ml-16 space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <textarea
-                    key={i}
-                    placeholder={`關鍵字 ${i}...`}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
-                    rows={2}
-                  />
-                ))}
-              </div>
-            </div>
+              <textarea
+                value={formData.worksheet3_coreKeywords}
+                onChange={(e) => updateFormData("worksheet3_coreKeywords", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-20"
+                placeholder="例如：新鮮、友善、有機、永續、在地、活力..."
+              />
+            </Card>
 
-            {/* Section B */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* B. Brand Story */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   B
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    品牌故事與主要溝通訊息
-                  </h3>
-                  <p className="text-slate-600">(Brand Story & Message)</p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">品牌故事與主要溝通訊息</h3>
+                <p className="text-sm text-slate-500 mt-1">(Brand Story & Message)</p>
               </div>
-              <div className="ml-16 space-y-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <textarea
-                    key={i}
-                    placeholder={`訊息 ${i}...`}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                    rows={2}
-                  />
-                ))}
-              </div>
-            </div>
+              <textarea
+                value={formData.worksheet3_brandStory}
+                onChange={(e) => updateFormData("worksheet3_brandStory", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 min-h-24"
+                placeholder="例如：我們與在地小農合作，提供 100% 有機香蕉。透過直送模式，確保消費者吃到最新鮮的水果..."
+              />
+            </Card>
 
-            {/* Section C */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* C. Visual References */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   C
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    視覺風格參考與偏好
-                  </h3>
-                  <p className="text-slate-600">(Visual References)</p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">視覺風格參考與偏好</h3>
+                <p className="text-sm text-slate-500 mt-1">(Visual References)</p>
               </div>
-              <div className="ml-16 space-y-4">
-                {[1, 2, 3, 4].map((i) => (
-                  <textarea
-                    key={i}
-                    placeholder={`視覺參考 ${i}...`}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none"
-                    rows={2}
-                  />
-                ))}
-              </div>
-            </div>
+              <textarea
+                value={formData.worksheet3_visualReferences}
+                onChange={(e) => updateFormData("worksheet3_visualReferences", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 min-h-24"
+                placeholder="例如：參考品牌 A、B、C 的風格；偏好手繪插圖；使用暖色調..."
+              />
+            </Card>
 
-            {/* Section D */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* D. Priorities */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   D
                 </div>
+                <h3 className="text-2xl font-bold text-slate-900">設計產出優先順序</h3>
+                <p className="text-sm text-slate-500 mt-1">(Priorities)</p>
+              </div>
+
+              <div className="space-y-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    設計產出優先順序
-                  </h3>
-                  <p className="text-slate-600">(Priorities)</p>
+                  <label className="block text-slate-700 font-semibold mb-2">1. 最優先</label>
+                  <input
+                    type="text"
+                    value={formData.worksheet3_priority1}
+                    onChange={(e) => updateFormData("worksheet3_priority1", e.target.value)}
+                    className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="例如：Logo 設計"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-2">2. 次優先</label>
+                  <input
+                    type="text"
+                    value={formData.worksheet3_priority2}
+                    onChange={(e) => updateFormData("worksheet3_priority2", e.target.value)}
+                    className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="例如：包裝設計"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-2">3. 其他</label>
+                  <input
+                    type="text"
+                    value={formData.worksheet3_priority3}
+                    onChange={(e) => updateFormData("worksheet3_priority3", e.target.value)}
+                    className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="例如：網站設計、社群媒體素材"
+                  />
                 </div>
               </div>
-              <div className="ml-16 space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="text-lg font-bold text-slate-600 pt-2 w-8">
-                      {i}.
-                    </span>
-                    <textarea
-                      placeholder={`優先順序 ${i}...`}
-                      className="flex-1 px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                      rows={2}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            </Card>
 
-            {/* Section E */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* E. Constraints */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   E
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    限制條件與應用場景
-                  </h3>
-                  <p className="text-slate-600">(Constraints & Scenarios)</p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">限制條件與應用場景</h3>
+                <p className="text-sm text-slate-500 mt-1">(Constraints & Scenarios)</p>
               </div>
-              <div className="ml-16 space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <textarea
-                    key={i}
-                    placeholder={`限制條件 ${i}...`}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
-                    rows={2}
-                  />
-                ))}
-              </div>
-            </div>
+              <textarea
+                value={formData.worksheet3_constraints}
+                onChange={(e) => updateFormData("worksheet3_constraints", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 min-h-24"
+                placeholder="例如：預算有限，需要簡化設計；需要在小螢幕上清晰顯示；需要支持黑白列印..."
+              />
+            </Card>
           </div>
 
           {/* Navigation Buttons */}
@@ -198,7 +184,7 @@ export default function Worksheet3() {
             </Link>
             <Link href="/worksheet/4">
               <Button className="gap-2">
-                下一步：工作單 4 <ArrowRight className="w-4 h-4" />
+                下一步 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>

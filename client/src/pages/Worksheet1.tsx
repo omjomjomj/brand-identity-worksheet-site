@@ -3,11 +3,37 @@ import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { useEffect } from "react";
+import { useFormData } from "@/contexts/FormContext";
+
+const personalityOptions = [
+  { label: "專業信頼", value: "professional", en: "Professional" },
+  { label: "親切友善", value: "friendly", en: "Friendly" },
+  { label: "高端精緻", value: "luxury", en: "Luxury" },
+  { label: "經濟實惠", value: "affordable", en: "Affordable" },
+  { label: "創新前衛", value: "innovative", en: "Innovative" },
+  { label: "經典傳統", value: "classic", en: "Classic" },
+  { label: "簡約現代", value: "minimalist", en: "Minimalist" },
+  { label: "溫暖親民", value: "warm", en: "Warm" },
+];
 
 export default function Worksheet1() {
+  const { formData, updateFormData } = useFormData();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const togglePersonality = (value: string) => {
+    const current = formData.worksheet1_personalityKeywords;
+    if (current.includes(value)) {
+      updateFormData(
+        "worksheet1_personalityKeywords",
+        current.filter(k => k !== value)
+      );
+    } else {
+      updateFormData("worksheet1_personalityKeywords", [...current, value]);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
@@ -58,130 +84,83 @@ export default function Worksheet1() {
           </Card>
 
           {/* Form Sections */}
-          <div className="space-y-12">
-            {/* Section A */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
+          <div className="space-y-8">
+            {/* A. Brand Status */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   A
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    品牌現狀與核心
-                  </h3>
-                  <p className="text-slate-600">
-                    主要產品／服務是什麼？目前處於什麼階段？
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">品牌現狀與核心</h3>
               </div>
-              <div className="space-y-4 ml-16">
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+              <p className="text-slate-600 mb-4">主要產品／服務是什麼？目前處於什麼階段？</p>
+              <textarea
+                value={formData.worksheet1_brandStatus}
+                onChange={(e) => updateFormData("worksheet1_brandStatus", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-24"
+                placeholder="例如：我們提供有機香蕉，目前在建立線上銷售平台..."
+              />
+            </Card>
 
-            {/* Section B */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* B. Target Audience */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   B
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    目標受眾 (Target Audience)
-                  </h3>
-                  <p className="text-slate-600">
-                    最想吸引的客戶是誰？（年齡、職業、生活方式）
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">目標受眾 (Target Audience)</h3>
               </div>
-              <div className="space-y-4 ml-16">
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                />
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+              <p className="text-slate-600 mb-4">最想吸引的客戶是誰？（年齡、職業、生活方式）</p>
+              <textarea
+                value={formData.worksheet1_targetAudience}
+                onChange={(e) => updateFormData("worksheet1_targetAudience", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 min-h-24"
+                placeholder="例如：25-45 歲的健康飲食愛好者，重視食品安全和永續農業..."
+              />
+            </Card>
 
-            {/* Section C */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-green-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* C. Competitive Advantage */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   C
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    競爭優勢與價值
-                  </h3>
-                  <p className="text-slate-600">
-                    為什麼客戶會選擇我們而不是別人？最核心的特色是？
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">競爭優勢與價值</h3>
               </div>
-              <div className="space-y-4 ml-16">
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-                <input
-                  type="text"
-                  placeholder="請輸入您的答案..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+              <p className="text-slate-600 mb-4">為什麼客戶會選擇我們而不是別人？最核心的特色是？</p>
+              <textarea
+                value={formData.worksheet1_competitiveAdvantage}
+                onChange={(e) => updateFormData("worksheet1_competitiveAdvantage", e.target.value)}
+                className="w-full p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 min-h-24"
+                placeholder="例如：100% 有機認證、在地小農合作、新鮮直送..."
+              />
+            </Card>
 
-            {/* Section D */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center font-bold text-lg">
+            {/* D. Brand Personality */}
+            <Card className="p-6">
+              <div className="mb-4">
+                <div className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold mb-3">
                   D
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    品牌個性關鍵字
-                  </h3>
-                  <p className="text-slate-600">
-                    請勾選 3-5 個符合品牌未來形象的形容詞：
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900">品牌個性關鍵字</h3>
               </div>
-              <div className="ml-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  "專業信頼 (Professional)",
-                  "親切友善 (Friendly)",
-                  "高端精緻 (Luxury)",
-                  "經濟實惠 (Affordable)",
-                  "創新前衛 (Innovative)",
-                  "經典傳統 (Classic)",
-                  "簡約現代 (Minimalist)",
-                  "溫暖親民 (Warm)",
-                ].map((keyword) => (
-                  <label key={keyword} className="flex items-center gap-3 cursor-pointer">
+              <p className="text-slate-600 mb-6">請勾選 3-5 個符合品牌未來形象的形容詞：</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {personalityOptions.map((option) => (
+                  <label key={option.value} className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
-                      className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                      checked={formData.worksheet1_personalityKeywords.includes(option.value)}
+                      onChange={() => togglePersonality(option.value)}
+                      className="w-4 h-4 rounded border-slate-300"
                     />
-                    <span className="text-slate-700">{keyword}</span>
+                    <span className="text-slate-700">
+                      {option.label} <span className="text-xs text-slate-500">({option.en})</span>
+                    </span>
                   </label>
                 ))}
               </div>
-            </div>
+            </Card>
           </div>
 
           {/* Navigation Buttons */}
@@ -193,7 +172,7 @@ export default function Worksheet1() {
             </Link>
             <Link href="/worksheet/2">
               <Button className="gap-2">
-                下一步：工作單 2 <ArrowRight className="w-4 h-4" />
+                下一步 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
