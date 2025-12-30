@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>品牌識別工作單</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Inter", "Noto Sans TC", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at 10% 20%, #f8fafc 0, #eef2ff 25%, #f8fafc 50%);
+        color: #0f172a;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+      .card {
+        max-width: 720px;
+        width: min(92vw, 720px);
+        background: white;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        padding: 32px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(28px, 4vw, 36px);
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0 0 20px;
+        line-height: 1.7;
+        color: #475569;
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+        border-radius: 12px;
+        border: none;
+        background: linear-gradient(120deg, #2563eb, #f97316);
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25);
+        transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(59, 130, 246, 0.32);
+      }
+      .meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        font-weight: 600;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>品牌識別工作單網站</h1>
+      <p>
+        這裡是專案的靜態入口頁，提供快速連結到互動式 React 版本的品牌識別工作單。
+        使用現代化的指引，逐步完成品牌快照、視覺風格、設計師簡報與 AI 提示詞。
+      </p>
+      <a class="cta" href="/client/index.html">進入工作單</a>
+      <div class="meta">
+        <span class="pill">四步驟流程</span>
+        <span class="pill">視覺風格指引</span>
+        <span class="pill">AI 提示詞小抄</span>
+      </div>
+    </main>
+  </body>
+</html>
